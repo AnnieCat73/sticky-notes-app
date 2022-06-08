@@ -68,3 +68,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+# My readme notes
+
+I made the noteslist responsive with CSS-Grid using the auto-fit property so that you can have as many notes as possible and they will automatically wrap to the next row when no more space left in the current row no matter which screensize you are on.
