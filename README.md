@@ -74,4 +74,28 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # My readme notes
 
+I first set up Header and Footer components and then the Notelist component. The NoteList will be the parent for the Note component. The Note component will contain the content or the jsx for each note that is created or added.
+
 I made the noteslist responsive with CSS-Grid using the auto-fit property so that you can have as many notes as possible and they will automatically wrap to the next row when no more space left in the current row no matter which screensize you are on.
+
+In App.js we will use the useState hook to hold the array of notes. As we are working with lists we will store our notes in an array.
+The initial state of this array will be object containing the title, text and id of the note. To get the id I used nanoid() and this id will be needed when we delete a note. Nanoid() is a tiny, URL-Friendly Unique String Generator for JavaScript.
+
+Now we have our NoteList stored in state and after this we need to pass the notes variable to the NoteList component (after return in <NoteList />) so that it can render each note. We do this via props in a attribute called notes. We can destructure this prop so we can pass this to the Notelist component.
+
+In NoteList component we use map to loop over our list and render a Note component. This will make things more dynamic. For each note that gets rendered we want to pass in the title, text and id as props to the Note component . The note component will receive this via destructering these props.
+
+Then I created a NoteAdd component for creating a new note and added a button for adding a new note. To save or add a new note we need to capture what the user has typed via the useState hook to save the value inside the AddNote component. 
+
+Then we want to add the note when the user clicks +Note button. I added a function called HandleSaveClick to the button so that the state gets updated with the new note. To do this we pass from the parent, App.js, which allows the child, addNote, to update the state. I called this function addNote. We pass in the text the user has typed. Then pass this function to the NoteList further down in App.js as a prop called handleAddNote={addNote}. We receive it in NoteList component destructed as handleAddNote then add it to the <Addnote> component inside the return. Then in AddNote component we will destructure the same prop again so the handleSaveClick or +addNote button has access to it. Then inside handleSaveClick we will pass in the text of the note which is noteText variable we stored in state.
+
+Then update the state with the new note. In app.js we create a new object in the addNote function. Then we need to create a new array so that we can add the new note at the end of this array, newNotes. In there we add all the previous notes with the spread operator with the new note. Then setNotes updates with the new data.
+
+Deleting a note by creating a deleteNote function in App.js which will accept the id of the note to be deleted. Each note in the array has an id. We use filter function to remove the note that has the same id as the id that is passed in. We pass the deleteNote function down the component tree so that it can be called from the Note component. We created a new prop in the NoteList called handleDeleteNote. This will be destructured and passed to NoteList component then again passed to Note component where the delete button runs this handleDeleteNote function with the id passed in.
+
+Searching for a note by typing in the search bar so that the notes start to filter based on what we type. We add a new component, Search. We capture the value the user has typed with useState variable searchText and pass its searchText function as a prop in the Search component further down in App.js. We call it handleSearchNote which is set to setSearchText. We pass this to Search.js and pass the function to the input via onChange where we get the value the user has typed.  
+
+Then we filter the notes to only show the notes that contain that text. In App.js we go to the NoteList component and filter the notes. So what it will do is to take the current list of notes and filter through those notes and return and only return the ones that include the searchtext.
+
+
+
