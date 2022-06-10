@@ -97,5 +97,11 @@ Searching for a note by typing in the search bar so that the notes start to filt
 
 Then we filter the notes to only show the notes that contain that text. In App.js we go to the NoteList component and filter the notes. So what it will do is to take the current list of notes and filter through those notes and return and only return the ones that include the searchtext.
 
+Dark mode 
 
+As the Toggle Mode button will change the state I used a useState hook and store a boolean value to indicate whether the app is currently in dark mode or not. I passed this to the Toggle Mode button in the Search.js as a property. To make it work in the browser we need to toggle the dark mode class from index.css in App.js depending on if the dark mode state is set to true. I created a new div and put everything already in the container class inside this div. This allows us to add styles to our overall app such as dark mode withouth affecting any other styles in the App. Inside this new div we add within the {} a template string to determine if we should add dark mode class or not based on the dark mode state variable.
+
+Save to local storage
+We need to save the data to local storage so that the data or the notes are saved when we close a tab. In App.js we add the useEffect() hook. This will save the notes to local storage with the key of 'react-notes-app-data'. We will be watching the notes variable here. When notes gets updated with new notes f.ex then it will trigger the useEffect function and the new notes will be saved to local storage.
+We also need to retrieve notes from local storage when the app loads. We create another useEffect function for this. The dependancy array is empty as we only want it to run once to get the notes on the first load. Then to check if we have saved any notes from local storage and if we did we want to set it into state. If we have any saved notes it will set them to state in setNotes(). If not it will not do this.
 
